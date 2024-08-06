@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Dashboard</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  <style>
+    /* Chart.js */
+    @keyframes chartjs-render-animation {
+      from {
+        opacity: .99
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .chartjs-render-monitor {
+      animation: chartjs-render-animation 1ms
+    }
+
+    .chartjs-size-monitor,
+    .chartjs-size-monitor-expand,
+    .chartjs-size-monitor-shrink {
+      position: absolute;
+      direction: ltr;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      visibility: hidden;
+      z-index: -1
+    }
+
+    .chartjs-size-monitor-expand>div {
+      position: absolute;
+      width: 1000000px;
+      height: 1000000px;
+      left: 0;
+      top: 0
+    }
+
+    .chartjs-size-monitor-shrink>div {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      left: 0;
+      top: 0
+    }
+
+    /* Custom */
+    .nav-sidebar {
+      display: flex;
+      flex-direction: column;
+      height: 60vh;
+    }
+
+    .nav-sidebar .mt-auto {
+      margin-top: auto;
+    }
+
+    .bg-primary {
+      background-color: #080c34 !important;
+    }
+
+    .text-dark {
+      color: #080c34 !important;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: 390px;
+      padding: 20px 0;
+      position: relative;
+      /* Ensure relative positioning */
+      overflow: hidden;
+      /* Ensure content doesn't overflow */
+    }
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+    }
+
+    .swiper-pagination {
+      position: relative;
+      bottom: 10px;
+      text-align: center;
+    }
+
+    .swiper-pagination-bullet {
+      background: #007bff;
+      opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #0056b3;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #007bff;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .swiper-button-next {
+      right: 10px;
+    }
+
+    .swiper-button-prev {
+      left: 10px;
+    }
+
+    @media (max-width: 768px) {
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+        top: auto;
+        bottom: 10px;
+        transform: none;
+      }
+
+      .swiper-button-next {
+        right: 50px;
+      }
+
+      .swiper-button-prev {
+        left: 50px;
+      }
+
+      .swiper-pagination {
+        bottom: 40px;
+      }
+    }
+  </style>
+</head>
+
+
+<body class="sidebar-mini layout-fixed" style="height: auto; background-color: #080c34 !important;">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light bg-primary">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu"
+            href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+            role="button"><i class="fas fa-bars text-light"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+
+        </li>
+
+      </ul>
+
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Navbar Search -->
+        <li class="nav-item">
+          <div class="navbar-search-block">
+            <form class="form-inline">
+              <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </li>
+
+        <!-- Messages Dropdown Menu -->
+        <li class="nav-item dropdown">
+
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="./index_files/user1-128x128.jpg" alt="User Avatar" class="img-circle">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    Brad Diesel
+                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">Call me whenever you can...</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="./index_files/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    John Pierce
+                    <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">I got your message bro</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item">
+              <!-- Message Start -->
+              <div class="media">
+                <img src="./index_files/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                <div class="media-body">
+                  <h3 class="dropdown-item-title">
+                    Nora Silvester
+                    <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                  </h3>
+                  <p class="text-sm">The subject goes here</p>
+                  <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                </div>
+              </div>
+              <!-- Message End -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item dropdown-footer">See All Messages</a>
+          </div>
+        </li>
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown"
+            href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#">
+            <i class="far fa-bell text-light"></i>
+            <span class="badge badge-warning navbar-badge">15</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">15 Notifications</span>
+            <div class="dropdown-divider"></div>
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> 4 new messages
+              <span class="float-right text-muted text-sm">3 mins</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item">
+              <i class="fas fa-users mr-2"></i> 8 friend requests
+              <span class="float-right text-muted text-sm">12 hours</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item">
+              <i class="fas fa-file mr-2"></i> 3 new reports
+              <span class="float-right text-muted text-sm">2 days</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+              class="dropdown-item dropdown-footer">See All Notifications</a>
+          </div>
+        </li>
+        <li class="nav-item">
+
+        </li>
+        <li class="nav-item">
+
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4 bg-light">
+      <!-- Brand Logo -->
+      <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+        class="brand-link text-center">
+        <span class="brand-text font-weight-light"><img src="https://www.empregomelhor.com.br/images/logo-wide.png"
+            alt="" style="width: 200px;"></span>
+      </a>
+
+      <!-- Sidebar -->
+      <div
+        class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition"
+        style="overflow: hidden !important;">
+        <div class="os-resize-observer-host observed">
+          <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
+        </div>
+        <div class="os-size-auto-observer observed" style="height: calc(100% + 1px); float: left;">
+          <div class="os-resize-observer"></div>
+        </div>
+        <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 808px;"></div>
+        <div class="os-padding">
+          <div class="os-viewport os-viewport-native-scrollbars-invisible" style="overflow-y: scroll;">
+            <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+              <!-- Sidebar user panel (optional) -->
+              <div class="row user-panel mt-3 pb-3 mb-3">
+                <div class="image col-12 text-center">
+                  <span class="brand-text font-weight-light"><img src="assets/images/d4.jpeg" alt=""
+                      style="width: 200px; border-radius: 100px;"></span>
+                </div>
+                <div class="info col-12 text-center">
+                  <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index.html#"
+                    class="d-block font-weight-bold text-dark h4">JOSÉ RODRIGO</a>
+                  <div class="star-rating text-warning" style="transform: scale(2.1);">
+                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sidebar Menu -->
+              <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                  data-accordion="false">
+                  <li class="nav-item">
+                    <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+                      class="nav-link">
+                      <i class="fa fa-user nav-icon text-dark"></i>
+                      <p class="text-dark font-weight-bold">Meu Perfil</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+                      class="nav-link">
+                      <i class="fa fa-laptop nav-icon text-dark"></i>
+                      <p class="text-dark font-weight-bold">Meus Cursos</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+                      class="nav-link">
+                      <i class="fa fa-graduation-cap nav-icon text-dark"></i>
+                      <p class="text-dark font-weight-bold">Qualifica Motorista</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+                      class="nav-link">
+                      <i class="fa fa-notes-medical nav-icon text-dark"></i>
+                      <p class="text-dark font-weight-bold">Saúde do Motorista</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+                      class="nav-link">
+                      <i class="fa fa-stethoscope nav-icon text-dark"></i>
+                      <p class="text-dark font-weight-bold">Exame Toxicológico</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+                      class="nav-link">
+                      <i class="fa fa-door-open nav-icon text-dark"></i>
+                      <p class="text-dark font-weight-bold">Sair</p>
+                    </a>
+                  </li>
+                  <li class="nav-item mt-5 text-center">
+                    <a href="file:///C:/Users/ti3/OneDrive%20-%20Grupo%20Alta%20Sports/Desktop/adminlte/index3.html"
+                      class="nav-link">
+
+                      <button type="button" class="btn btn-warning "><i class="fa fa-file nav-icon text-dark mr-2"></i>
+                        Meu Currículo</button>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <!-- /.sidebar-menu -->
+            </div>
+          </div>
+        </div>
+        <div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden">
+          <div class="os-scrollbar-track">
+            <div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div>
+          </div>
+        </div>
+        <div class="os-scrollbar os-scrollbar-vertical os-scrollbar-auto-hidden">
+          <div class="os-scrollbar-track">
+            <div class="os-scrollbar-handle" style="height: 59.5291%; transform: translate(0px, 0px);"></div>
+          </div>
+        </div>
+        <div class="os-scrollbar-corner"></div>
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper bg-primary" style="min-height: 752px;">
+      <!-- Content Header (Page header) -->
+
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content bg-primary">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h3 class="text-blue">150</h3>
+                  <p>Vagas Abertas</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <a href="#" class="small-box-footer">Visualizar <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h3 class="text-blue">10</h3>
+                  <p>Minhas vagas</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-user-check"></i>
+                </div>
+                <a href="#" class="small-box-footer">Visualizar <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h3 class="text-blue">3</h3>
+                  <p>Entrevistas Agendadas</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-calendar"></i>
+                </div>
+                <a href="#" class="small-box-footer">Visualizar <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+              <!-- small box -->
+              <div class="small-box bg-light">
+                <div class="inner">
+                  <h3 class="text-blue">R$ 2.584,08</h3>
+                  <p>Média Salarial</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <a href="#" class="small-box-footer">Visualizar <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+            <!-- ./col -->
+          </div>
+          <!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-9 connectedSortable ui-sortable" style="padding-top: 5rem;">
+              <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                  <h3 class="card-title font-weight-bold text-primary">Encontre sua Vaga</h3>
+                </div>
+                <div class="card col-12">
+                  <div class="card-header">
+                    <h3 class="card-title font-weight-bold text-primary">Últimas Vagas</h3>
+                    <div class="card-tools">
+                      <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Pesquisar">
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body table-responsive p-0" style="height: 300px;">
+                    <table class="table table-striped table-head-fixed text-nowrap">
+                      <thead>
+                        <tr class="bg-warning">
+                          <th class="text-dark bg-warning">Vaga</th>
+                          <th class="text-dark bg-warning">Função</th>
+                          <th class="text-dark bg-warning">Salário</th>
+                          <th class="text-dark bg-warning">Benefícios</th>
+                          <th class="text-dark bg-warning">Cidade/UF</th>
+                          <th class="text-dark bg-warning">Regime</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="text-dark">
+                          <td>#1</td>
+                          <td>Motorista Carreteiro(a) </td>
+                          <td>R$2.800,00</td>
+                          <td>
+                            <i class="fas fa-tooth"></i>
+                            <i class="fas fa-bus"></i>
+                          </td>
+                          <td>São José dos Campos/SP</td>
+                          <td>CLT</td>
+                        </tr>
+                        <tr class="text-dark">
+                          <td>#2</td>
+                          <td>Motorista Carreteiro(a) </td>
+                          <td>R$2.800,00</td>
+                          <td>
+                            <i class="fas fa-tooth"></i>
+                            <i class="fas fa-bus"></i>
+                          </td>
+                          <td>São José dos Campos/SP</td>
+                          <td>CLT</td>
+                        </tr>
+                        <tr class="text-dark">
+                          <td>#3</td>
+                          <td>Motorista Carreteiro(a) </td>
+                          <td>R$2.800,00</td>
+                          <td>
+                            <i class="fas fa-tooth"></i>
+                            <i class="fas fa-bus"></i>
+                          </td>
+                          <td>São José dos Campos/SP</td>
+                          <td>CLT</td>
+                        </tr>
+                        <tr class="text-dark">
+                          <td>#3</td>
+                          <td>Motorista Carreteiro(a) </td>
+                          <td>R$2.800,00</td>
+                          <td>
+                            <i class="fas fa-tooth"></i>
+                            <i class="fas fa-bus"></i>
+                          </td>
+                          <td>São José dos Campos/SP</td>
+                          <td>CLT</td>
+                        </tr>
+                        <tr class="text-dark">
+                          <td>#3</td>
+                          <td>Motorista Carreteiro(a) </td>
+                          <td>R$2.800,00</td>
+                          <td>
+                            <i class="fas fa-tooth"></i>
+                            <i class="fas fa-bus"></i>
+                          </td>
+                          <td>São José dos Campos/SP</td>
+                          <td>CLT</td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card-->
+              </div>
+              <!-- /.row -->
+            </section>
+            <!-- /.Left col -->
+            <!-- right col (We are only adding the ID to make the widgets sortable)-->
+            <section class="col-lg-3 connectedSortable ui-sortable" style="padding-top: 5rem;">
+              <div class="container bg-primary">
+                <div class="swiper-container swiper-container-s1">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <img src="assets/images/estamos-contratando.jpg" alt="Image 1" class="img-fluid" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="assets/images/estamos-contratando.jpg" alt="Image 2" class="img-fluid" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="assets/images/estamos-contratando.jpg" alt="Image 3" class="img-fluid" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="assets/images/estamos-contratando.jpg" alt="Image 4" class="img-fluid" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="assets/images/estamos-contratando.jpg" alt="Image 5" class="img-fluid" />
+                    </div>
+                    <div class="swiper-slide">
+                      <img src="assets/images/estamos-contratando.jpg" alt="Image 6" class="img-fluid" />
+                    </div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+            </section>
+            <!-- right col -->
+          </div>
+          <!-- /.row (main row) -->
+
+
+          <div class="row pt-5">
+            <section class="content bg-primary col-12">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <div class="card bg-white p-3">
+                      <div class="row justify-content-center align-items-center">
+                        <div class="font-weight-bold col-4 text-primary text-center">
+                          Saldo <br>
+                          disponível
+                        </div>
+                        <div class="h4 font-weight-bold col-4 text-center text-primary">
+                          R$18,00
+                        </div>
+                        <div class="col-4 text-right">
+                          <button class="btn btn-success">Adicionar saldo</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card bg-primary">
+                      <div class="card-header">
+                        <h3 class="card-title text-primary font-weight-bold">Minhas Qualificações </h3>
+
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                          <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="chartjs-size-monitor">
+                          <div class="chartjs-size-monitor-expand">
+                            <div class=""></div>
+                          </div>
+                          <div class="chartjs-size-monitor-shrink">
+                            <div class=""></div>
+                          </div>
+                        </div>
+                        <canvas id="donutChart"
+                          style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 377px;"
+                          width="377" height="250" class="chartjs-render-monitor"></canvas>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <div id="sidebar-overlay"></div>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery -->
+  <script src="./index_files/jquery.min.js.transferir"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="./index_files/jquery-ui.min.js.transferir"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="./index_files/bootstrap.bundle.min.js.transferir"></script>
+  <!-- ChartJS -->
+  <script src="./index_files/Chart.min.js.transferir"></script>
+  <!-- Sparkline -->
+  <script src="./index_files/sparkline.js.transferir"></script>
+  <!-- JQVMap -->
+  <script src="./index_files/jquery.vmap.min.js.transferir"></script>
+  <script src="./index_files/jquery.vmap.usa.js.transferir"></script>
+  <!-- jQuery Knob Chart -->
+  <script src="./index_files/jquery.knob.min.js.transferir"></script>
+  <!-- daterangepicker -->
+  <script src="./index_files/moment.min.js.transferir"></script>
+  <script src="./index_files/daterangepicker.js.transferir"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="./index_files/tempusdominus-bootstrap-4.min.js.transferir"></script>
+  <!-- Summernote -->
+  <script src="./index_files/summernote-bs4.min.js.transferir"></script>
+  <!-- overlayScrollbars -->
+  <script src="./index_files/jquery.overlayScrollbars.min.js.transferir"></script>
+  <!-- AdminLTE App -->
+  <script src="./index_files/adminlte.js.transferir"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="./index_files/demo.js.transferir"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="./index_files/dashboard.js.transferir"></script>
+
+
+  <div class="daterangepicker ltr show-ranges opensright">
+    <div class="ranges">
+      <ul>
+        <li data-range-key="Today">Today</li>
+        <li data-range-key="Yesterday">Yesterday</li>
+        <li data-range-key="Last 7 Days">Last 7 Days</li>
+        <li data-range-key="Last 30 Days">Last 30 Days</li>
+        <li data-range-key="This Month">This Month</li>
+        <li data-range-key="Last Month">Last Month</li>
+        <li data-range-key="Custom Range">Custom Range</li>
+      </ul>
+    </div>
+    <div class="drp-calendar left">
+      <div class="calendar-table"></div>
+      <div class="calendar-time" style="display: none;"></div>
+    </div>
+    <div class="drp-calendar right">
+      <div class="calendar-table"></div>
+      <div class="calendar-time" style="display: none;"></div>
+    </div>
+    <div class="drp-buttons"><span class="drp-selected"></span><button class="cancelBtn btn btn-sm btn-default"
+        type="button">Cancel</button><button class="applyBtn btn btn-sm btn-primary" disabled="disabled"
+        type="button">Apply</button> </div>
+  </div>
+  <div class="jqvmap-label" style="display: none;"></div>
+
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+  <!-- Optional: AdminLTE for demo purposes -->
+  <script src="dist/js/demo.js"></script>
+
+  <!-- Initialize AdminLTE -->
+  <script>
+    $(document).ready(function () {
+      $('[data-widget="pushmenu"]').PushMenu();
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var swiper = new Swiper(".swiper-container-s1", {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          0: {
+            slidesPerView: 1,
+          },
+          1000: {
+            slidesPerView: 1,
+          },
+        },
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var ctx = document.getElementById('donutChart').getContext('2d');
+      var donutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['30%', '50%', '70%', '100%'],
+          datasets: [{
+            data: [15, 30, 33, 22],
+            backgroundColor: ['#2b455b', '#5271ff', '#5cb6f9', '#ffbd59']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true
+            },
+            tooltip: {
+              callbacks: {
+                label: function (tooltipItem) {
+                  return tooltipItem.label + ': ' + tooltipItem.raw;
+                }
+              }
+            }
+          },
+          layout: {
+            padding: 20
+          }
+        }
+      });
+
+      // Set the background color of the canvas
+      document.getElementById('donutChart').style.backgroundColor = '#080c34';
+    });
+  </script>
+
+
+</body>
+
+</html>
